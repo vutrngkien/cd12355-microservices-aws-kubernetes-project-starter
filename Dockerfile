@@ -1,4 +1,4 @@
-FROM python:3.13.0-slim
+FROM --platform=linux/amd64 public.ecr.aws/docker/library/python:3.10-slim-buster as build
 
 RUN apt update -y
 RUN apt install -y build-essential libpq-dev
