@@ -9,15 +9,15 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t coworking:$CODEBUILD_BUILD_NUMBER .
-      - docker tag coworking:$CODEBUILD_BUILD_NUMBER 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:$CODEBUILD_BUILD_NUMBER
+      - docker build -t coworking:$IMAGE_TAG .
+      - docker tag coworking:$IMAGE_TAG 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:$CODEBUILD_BUILD_NUMBER
+      - docker push 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:$IMAGE_TAG
       - echo Tagging the image as latest...
-      - docker tag 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:$CODEBUILD_BUILD_NUMBER 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
+      - docker tag 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:$IMAGE_TAG 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
       - docker push 218421663553.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
 
 artifacts:
